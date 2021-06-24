@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "445278413518",
+    "project_id": "dennis-app-737e2",
+    "storage_bucket": "dennis-app-737e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445278413518:android:d598e6fc31f4c0bc7d269f",
+        "android_client_info": {
+          "package_name": "com.example.dennis_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445278413518-tba4qper7vhda55d9agoke7mhcpcddb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dennis_app",
+            "certificate_hash": "8ffa31ba7e15fd0bce7d4ecbf41014613ce5a702"
+          }
+        },
+        {
+          "client_id": "445278413518-fftt4rqtb2inbeqfo01oj5lslavh007e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUM8tR1N5QjMAgn1pU4txV4iOkPo0jD_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445278413518-fftt4rqtb2inbeqfo01oj5lslavh007e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
