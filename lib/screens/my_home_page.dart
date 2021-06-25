@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:dennis_app/model/medida.dart';
+import 'package:dennis_app/model/proveedor.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
@@ -42,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _counterRef = FirebaseDatabase.instance.reference().child('counter');
     // Demonstrates configuring the database directly
     final FirebaseDatabase database = FirebaseDatabase(app: widget.app);
-    _messagesRef = database.reference().child('messages');
+    _messagesRef = database.reference().child('bd-proveedores');
     database.reference().child('counter').get().then((DataSnapshot? snapshot) {
       print(
           'Connected to directly configured database and read ${snapshot!.value}');
@@ -78,6 +80,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _increment() async {
+    Medida m = Medida(
+        id: 'id',
+        temperatura: 54,
+        ph: 4,
+        densidad: 4,
+        fechaHora: DateTime.now());
+    Proveedor p = Proveedor(
+        id: '12',
+        nombre: 'juan',
+        url: 'url',
+        direccion: 'direccion',
+        medida: m);
+    print(p.toJson());
     // Increment counter in transaction.
     final TransactionResult transactionResult =
         await _counterRef.runTransaction((MutableData mutableData) async {
@@ -86,9 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     if (transactionResult.committed) {
-      await _messagesRef.push().set(<String, String>{
-        _kTestKey: '$_kTestValue ${transactionResult.dataSnapshot?.value}'
-      });
+      await _messagesRef.push().set(p.toJson());
     } else {
       print('Transaction not committed.');
       if (transactionResult.error != null) {
