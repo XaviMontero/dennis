@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static String appName = "Mushuk Yuya";
+  static String appName = "Foody Bite";
 
   //Colors for theme
   static Color lightPrimary = Color(0xfffcfcff);
   static Color darkPrimary = Colors.black;
-  static Color lightAccent = Colors.blueGrey;
-  static Color darkAccent = Colors.white;
+  static Color lightAccent = Color(0xff5563ff);
+  static Color darkAccent = Color(0xff5563ff);
   static Color lightBG = Color(0xfffcfcff);
   static Color darkBG = Colors.black;
-  static Color badgeColor = Colors.red;
+  static Color ratingBG = Colors.yellow;
 
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
@@ -19,7 +19,6 @@ class Constants {
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
-      elevation: 0,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: darkBG,
@@ -38,7 +37,6 @@ class Constants {
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
     appBarTheme: AppBarTheme(
-      elevation: 0,
       textTheme: TextTheme(
         headline6: TextStyle(
           color: lightBG,

@@ -6,6 +6,7 @@
 // @dart=2.9
 
 import 'dart:async';
+import 'package:dennis_app/screens/home.dart';
 import 'package:dennis_app/screens/my_home_page.dart';
 import 'package:dennis_app/util/const.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,8 @@ class MyApp extends StatelessWidget {
       darkTheme: Constants.darkTheme,
       initialRoute: 'home',
       routes: {
-        'home': (BuildContext context) => MyHomePage(
-              app: null,
+        'home': (BuildContext context) => Home(
+            
             ),
       },
     );

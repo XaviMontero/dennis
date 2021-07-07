@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +28,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  num _sumaTotal = 0;
   late DatabaseReference _counterRef;
+  late DatabaseReference _proveedore;
   late DatabaseReference _messagesRef;
   late StreamSubscription<Event> _counterSubscription;
+  late StreamSubscription<Event> _phLeche;
   late StreamSubscription<Event> _messagesSubscription;
   bool _anchorToBottom = false;
 
@@ -41,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     // Demonstrates configuring to the database using a file
+    this.phLeche();
+
     _counterRef = FirebaseDatabase.instance.reference().child('counter');
     // Demonstrates configuring the database directly
     final FirebaseDatabase database = FirebaseDatabase(app: widget.app);
@@ -63,9 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
         _error = error;
       });
     });
-    _messagesSubscription =
-        _messagesRef.limitToLast(10).onChildAdded.listen((Event event) {
-      print('Child added: ${event.snapshot.value}');
+    _messagesSubscription = _messagesRef.onChildAdded.listen((Event event) {
+      this._sumaTotal = this._sumaTotal + event.snapshot.value['medida']['ph'];
+      print('Child hola: ${this._sumaTotal}');
     }, onError: (Object o) {
       final DatabaseError error = o as DatabaseError;
       print('Error: ${error.code} ${error.message}');
@@ -80,15 +86,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _increment() async {
+    var uuid = Uuid();
     Medida m = Medida(
-        id: 'id',
-        temperatura: 54,
-        ph: 4,
-        densidad: 4,
+        id: uuid.v1(),
+        temperatura: 45,
+        ph: 5,
+        densidad: 54,
         fechaHora: DateTime.now());
     Proveedor p = Proveedor(
-        id: '12',
-        nombre: 'juan',
+        id: uuid.v4(),
+        nombre: 'Marcelo',
         url: 'url',
         direccion: 'direccion',
         medida: m);
@@ -175,4 +182,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  void phLeche() {}
 }
